@@ -1,0 +1,363 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Sample API",
+		"version": "0.1.0"
+	},
+	"paths": {
+		"/*": {
+			"get": {
+				"description": "all requests",
+				"operationId": "GET",
+				"responses": {
+					"200": {
+						"description": "ok"
+					}
+				}
+			},
+			"post": {
+				"summary": "all requests",
+				"operationId": "POST",
+				"requestBody": {
+					"content": {
+						"application/json": {
+						},
+						"multipart/form-data": {
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Ok"
+					}
+				}
+			}
+		},
+		"/resources/*": {
+			"get": {
+				"description": "get public resources (imgs, files ...)",
+				"operationId": "resources",
+				"responses": {
+					"200": {
+						"description": "ok"
+					}
+				}
+			}
+		},
+		"/greeting": {
+			"post": {
+				"summary": "greeting",
+				"operationId": "greeting",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"name"
+								]
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Ok"
+					}
+				}
+			}
+		},
+
+		"/login" : {
+			"post": {
+				"summary": "all requests",
+				"operationId": "LOGIN",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"username": {
+										"type": "string"
+									},
+									"login": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"username",
+									"login"
+								]
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Ok"
+					}
+				}
+			}
+		},
+
+		"/private/*": {
+			"get": {
+				"description": "all requests",
+				"operationId": "privateGET",
+				"responses": {
+					"200": {
+						"description": "ok"
+					},
+					"401": {
+						"description": "Unauthorized !!"
+					}
+				}
+			},
+			"post": {
+				"summary": "all requests",
+				"operationId": "privatePOST",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/EmptyObj"
+							}
+						},
+						"multipart/form-data": {
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Ok"
+					},
+					"401": {
+						"description": "Unauthorized !!"
+					}
+				}
+			},
+			"delete": {
+				"summary": "all request",
+				"operationId": "privateDELETE",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Deleted with success !!"
+					},
+					"404": {
+						"description": "Id not found !!"
+					},
+					"401": {
+						"description": "Unauthorized !!"
+					}
+				}
+			},
+			"put": {
+				"summary": "all request",
+				"operationId": "privatePUT",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Updated with success !!"
+					},
+					"404": {
+						"description": "Id not found !!"
+					},
+					"401": {
+						"description": "Unauthorized !!"
+					}
+				}
+			}
+		},
+
+		"/private/AUTHENTICATION": {
+			"post": {
+				"summary": "check user authenticating",
+				"operationId": "authenticate",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/EmptyObj"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Ok"
+					}
+				}
+			}
+		},
+
+		"/private/MESSENGER_SEND": {
+			"post": {
+				"summary": "Envoyer un message !",
+				"operationId": "ENVOYER_MESSAGE",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"destinataire": {
+										"type": "string"
+									},
+									"expediteur": {
+										"type": "string"
+									},
+									"objet": {
+										"type": "string"
+									},
+									"message": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"destinataire",
+									"expediteur"
+								]
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Ok"
+					}
+				}
+			}
+
+		},
+
+		"/private/MESSENGER_GET": {
+			"post": {
+				"summary": "Lister les messages !",
+				"operationId": "RECEVOIR_MESSAGE",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"user": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"user"
+								]
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "ok"
+					}
+				}
+			}
+		},
+
+		"/private/GET_NOTE": {
+			"post": {
+				"summary": "Lister les notes du module X!",
+				"operationId": "GET_NOTE",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+
+								},
+								"required": [
+
+								]
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "ok"
+					}
+				}
+			}
+		},
+
+		"/private/ELEMENTS_BY_MODULE": {
+			"post": {
+				"summary": "les Elements du MODULE X",
+				"operationId": "Lister_Elements_By_Module",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"module": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"module"
+								]
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "ok"
+					}
+				}
+			}
+		},
+
+		"/private/ENSEIGNANT_BY_ELEMENT": {
+			"post": {
+				"summary": "enseignant du element X",
+				"operationId": "Get_One_By_element",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"element": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"element"
+								]
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "ok"
+					}
+				}
+			}
+		}
+	},
+
+	"components": {
+		"schemas": {
+			"EmptyObj": {
+				"type": "object",
+				"properties": {}
+			}
+		}
+	}
+}
